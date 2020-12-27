@@ -22,7 +22,6 @@
 <body>
 <div class="video-wrapper">
 	<div class="video-inner">
-        
 	  <video playsinline webkit-playsinline autoplay muted loop id="videoElem" class="video-elem active" poster="assets/nespresso.png">
         <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
         <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
@@ -55,24 +54,18 @@ var mode='FWRD';
 var xpos;
 var debugTxt = "";
 
-var vidElemtest = document.getElementById("videoElemtest");
-
-
-
 enableInlineVideo(video_elem);
 vidElem.play();
 $('video').bind('swipeleft', function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-   // debugTxt += 'swipeleft' + "<br/>";
+    debugTxt += 'swipeleft' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
-       // playForward();
+        playForward();
     }
-   // vidElem.pause();
     animateFast();
-  //  vidElem.play();
 });
 
 $('video').bind('swiperight', function(e){
@@ -89,36 +82,24 @@ $('video').bind('swiperight', function(e){
 
 function animateFast(){
     var timer = 0;
- //   debugTxt += 'animateForwardFast' + "<br/>";
-  //  $('#debug').html(debugTxt);
+    debugTxt += 'animateForwardFast' + "<br/>";
+    $('#debug').html(debugTxt);
     var animateFwrdInterval = setInterval(function(){ 
-      //  debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
-       // $('#debug').html(debugTxt); 
-      
+        debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
+        $('#debug').html(debugTxt);   
         if(timer < 500){
-            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
-            vidElem.play();
         }else{
-            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
-            vidElem.play();
         }
-       
         timer = timer + 100;
     }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
-     //   debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
-       // $('#debug').html(debugTxt);
-   
+        debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
+        $('#debug').html(debugTxt);  
         clearInterval(animateFwrdInterval);
-      
-        vidElem.pause();
         vidElem.playbackRate = 1.0;
-        vidElem.play();
     }, 900);
-
-   
 }
 
 function playForward() {
