@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://ae.buynespresso.com/static/version1606212015/frontend/buynespresso/theme-uae/en_US/Magento_Theme/favicon.ico">
+    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<style>
+        html, body { width: 100%; margin: 0; padding: 0; }
+        .video-wrapper * { box-sizing: border-box; }
+        .video-wrapper { width: 100%; margin: 0; padding: 0; }
+        .video-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0; }
+        .video-elem { width: 100%; margin: 0; padding: 0; display: block; }
+        #videoBackward { display: none; }
+
+        .debug-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0; }
+        #debug { font-size: 12px; line-height: 14px; width: 100%; height: 350px; overflow-y: scroll; }
+	</style>
+</head>
+<body>
+<div class="video-wrapper">
+	<div class="video-inner">
+	  <video playsinline webkit-playsinline autoplay muted loop id="videoElem" class="video-elem active" poster="assets/nespresso.png">
+        <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
+        <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
+		Your browser does not support HTML video.
+      </video>
+      <!--
+	  <video playsinline autoplay muted loop id="videoBackward" class="video-elem" poster="assets/nespresso.png">
+		<source src="assets/nesp-bwrd.mp4" type="video/mp4">
+		Your browser does not support HTML video.
+      </video>
+      -->
+    </div>
+    <div class="debug-inner">
+        <button id="btnClr">clear</button>
+        <div id="debug"></div>
+    </div>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type='application/javascript' src='js/fastclick.js'></script>
+<script src="js/inline-video.js"></script>
+<script text="type/javascript">
+$('document').ready(function(){
+
+var video_elem = document.querySelector('video');
+var vidElem = document.getElementById("videoElem"); 
+var startx = 0, endx = 0;
+var totPlayTime = 15.787, currPlayTime = 0.0;
+var mode='FWRD';
+var xpos;
+var debugTxt = "";
+
+enableInlineVideo(video_elem);
+vidElem.play();
+$('video').bind('swipeleft', function(e) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    debugTxt += 'swipeleft' + "<br/>";
+    $('#debug').html(debugTxt);
+    if(mode !== 'FWRD'){
+        mode = 'FWRD';
+        playForward();
+    }
+    animateFast();
+});
+
+$('video').bind('swiperight', function(e){
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    debugTxt += 'swiperight' + "<br/>";
+    $('#debug').html(debugTxt);
+    if(mode !== 'BWRD'){
+        mode = 'BWRD';
+        playBackward();
+    }
+    animateFast();
+});
+
+function animateFast(){
+    var timer = 0;
+    debugTxt += 'animateForwardFast' + "<br/>";
+    $('#debug').html(debugTxt);
+    var animateFwrdInterval = setInterval(function(){ 
+        debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
+        $('#debug').html(debugTxt);   
+        if(timer < 500){
+            vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
+        }else{
+            vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
+        }
+        timer = timer + 100;
+    }, 100);    
+    var animateFwrdTimout = setTimeout(function() { 
+        debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
+        $('#debug').html(debugTxt);  
+        clearInterval(animateFwrdInterval);
+        vidElem.playbackRate = 1.0;
+    }, 900);
+}
+
+function playForward() {
+    vidElem.currentTime = totPlayTime - vidElem.currentTime;
+    $('#videoElem source').attr('src', 'assets/nesp-fwrd.mp4');
+    $("#videoElem")[0].load();
+    $("#videoElem")[0].play();
+    debugTxt += "vidFwrd Time: " + vidElem.currentTime + "<br>";
+    $('#debug').html(debugTxt);
+}
+
+function playBackward() {
+    vidElem.currentTime = totPlayTime - vidElem.currentTime + 0.085;
+    $('#videoElem source').attr('src', 'assets/nesp-bwrd.mp4');
+    $("#videoElem")[0].load();
+    $("#videoElem")[0].play();
+    debugTxt += "vidBwrd Time: " + vidElem.currentTime + "<br>";
+    $('#debug').html(debugTxt);
+}
+
+$('#btnClr').click(function(){
+    debugTxt = "";
+    $('#debug').html(debugTxt);
+});
+
+});
+</script>
+</body>
+</html>
