@@ -56,10 +56,10 @@ var debugTxt = "";
 
 enableInlineVideo(video_elem);
 vidElem.play();
-$('video').bind('Commit > swipeleft', function(e) {
+$('video').bind('swipeleft', function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-    debugTxt += 'swipeleft' + "<br/>";
+    debugTxt += 'Commitswipeleft' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
