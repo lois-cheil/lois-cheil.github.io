@@ -81,16 +81,20 @@ $('video').bind('swiperight', function(e){
 });
 
 function animateFast(){
-    var timer = 10;
+    var timer = 0;
  //   debugTxt += 'animateForwardFast' + "<br/>";
   //  $('#debug').html(debugTxt);
     var animateFwrdInterval = setInterval(function(){ 
       //  debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
        // $('#debug').html(debugTxt);   
         if(timer < 500){
+            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
+            vidElem.play();
         }else{
+            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
+            vidElem.play();
         }
         timer = timer + 100;
     }, 100);    
