@@ -71,7 +71,7 @@ $('video').bind('swipeleft', function(e) {
 $('video').bind('swiperight', function(e){
     e.stopImmediatePropagation();
     e.preventDefault();
-    debugTxt += 'swiperight' + "<br/>";
+    debugTxt += 'swipe-right' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'BWRD'){
         mode = 'BWRD';
@@ -90,9 +90,9 @@ function animateFast(){
        
         vidElem.pause();  
         if(timer < 500){
-            vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
+            vidElem.playbackRate = (vidElem.playbackRate < 10.0) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
         }else{
-            vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
+            vidElem.playbackRate = (vidElem.playbackRate > 1.0) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
         }
         vidElem.play();
         timer = timer + 100;
@@ -104,7 +104,7 @@ function animateFast(){
         vidElem.pause();  
         vidElem.playbackRate = 1.0;
         vidElem.play();  
-    }, 1500);
+    }, 900);
 }
 
 function playForward() {
