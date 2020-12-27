@@ -68,11 +68,11 @@ $('video').bind('swipeleft', function(e) {
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
-       // playForward();
+        playForward();
     }
-    vidElem.pause();
+   // vidElem.pause();
     animateFast();
-    vidElem.play();
+  //  vidElem.play();
 });
 
 $('video').bind('swiperight', function(e){
@@ -109,9 +109,13 @@ function animateFast(){
     }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
      //   debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
-       // $('#debug').html(debugTxt);  
+       // $('#debug').html(debugTxt);
+       vidElem.pause();
         clearInterval(animateFwrdInterval);
+        vidElem.play();
+        vidElem.pause();
         vidElem.playbackRate = 1.0;
+        vidElem.play();
     }, 900);
 
    
