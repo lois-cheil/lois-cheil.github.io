@@ -92,6 +92,7 @@ function animateFast(){
         }else{
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
         }
+        vidElem.play();
         timer = timer + 100;
     }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
