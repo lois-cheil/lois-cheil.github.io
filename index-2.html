@@ -56,7 +56,7 @@ var debugTxt = "";
 
 enableInlineVideo(video_elem);
 vidElem.play();
-$('video').bind('swipeleft', function(e) {
+$('video').bind('Commit > swipeleft', function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
     debugTxt += 'swipeleft' + "<br/>";
@@ -90,9 +90,9 @@ function animateFast(){
         vidElem.playbackRate = vidElem.playbackRate;
         vidElem.pause();  
         if(timer < 500){
-            vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
+            vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 3.0 : vidElem.playbackRate;
         }else{
-            vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
+            vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 3.0 : vidElem.playbackRate;
         }
         vidElem.play();
         timer = timer + 100;
