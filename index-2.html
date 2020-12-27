@@ -96,13 +96,13 @@ function animateFast(){
        // $('#debug').html(debugTxt); 
       
         if(timer < 500){
-           
+            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
-           
+            vidElem.play();
         }else{
-           
+            vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
-           
+            vidElem.play();
         }
        
         timer = timer + 100;
@@ -110,9 +110,9 @@ function animateFast(){
     var animateFwrdTimout = setTimeout(function() { 
      //   debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
        // $('#debug').html(debugTxt);
-       vidElem.pause();
+   
         clearInterval(animateFwrdInterval);
-        vidElem.play();
+      
         vidElem.pause();
         vidElem.playbackRate = 1.0;
         vidElem.play();
