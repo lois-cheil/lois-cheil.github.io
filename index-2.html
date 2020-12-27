@@ -59,7 +59,7 @@ vidElem.play();
 $('video').bind('swipeleft', function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-    debugTxt += 'swipeleft' + "<br/>";
+    debugTxt += 'swipe-left' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
@@ -96,7 +96,7 @@ function animateFast(){
         }
         vidElem.play();
         timer = timer + 100;
-    }, 300);    
+    }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
         debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
         $('#debug').html(debugTxt);  
@@ -104,7 +104,7 @@ function animateFast(){
         vidElem.pause();  
         vidElem.playbackRate = 1.0;
         vidElem.play();  
-    }, 900);
+    }, 1500);
 }
 
 function playForward() {
