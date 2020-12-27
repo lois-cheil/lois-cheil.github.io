@@ -22,11 +22,7 @@
 <body>
 <div class="video-wrapper">
 	<div class="video-inner">
-        <video playsinline webkit-playsinline autoplay muted loop id="videoElemtest" class="video-elem active" poster="assets/nespresso.png">
-            <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
-            <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
-            Your browser does not support HTML video.
-          </video>
+        
 	  <video playsinline webkit-playsinline autoplay muted loop id="videoElem" class="video-elem active" poster="assets/nespresso.png">
         <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
         <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
@@ -61,10 +57,7 @@ var debugTxt = "";
 
 var vidElemtest = document.getElementById("videoElemtest");
 
-vidElemtest.pause();
-vidElemtest.playbackRate = 2.0;
-//vidElemtest.playbackRate = 3.0;
-vidElemtest.play();
+
 
 enableInlineVideo(video_elem);
 vidElem.play();
@@ -77,7 +70,9 @@ $('video').bind('swipeleft', function(e) {
         mode = 'FWRD';
         playForward();
     }
+    vidElem.pause();
     animateFast();
+    vidElem.play();
 });
 
 $('video').bind('swiperight', function(e){
@@ -99,7 +94,7 @@ function animateFast(){
     var animateFwrdInterval = setInterval(function(){ 
       //  debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
        // $('#debug').html(debugTxt); 
-       vidElem.pause();  
+      
         if(timer < 500){
            
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
@@ -109,7 +104,7 @@ function animateFast(){
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
            
         }
-        vidElem.play();
+       
         timer = timer + 100;
     }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
@@ -118,6 +113,8 @@ function animateFast(){
         clearInterval(animateFwrdInterval);
         vidElem.playbackRate = 1.0;
     }, 900);
+
+   
 }
 
 function playForward() {
