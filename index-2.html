@@ -60,7 +60,9 @@ var xpos;
 var debugTxt = "";
 
 var vidElemtest = document.getElementById("videoElemtest");
+vidElemtest.pause();
 vidElemtest.playbackRate = 3;
+vidElemtest.play();
 
 enableInlineVideo(video_elem);
 vidElem.play();
