@@ -59,7 +59,7 @@ vidElem.play();
 $('video').bind('swipeleft', function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-    debugTxt += 'swipeleft' + "<br/>";
+   // debugTxt += 'swipeleft' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
