@@ -107,26 +107,7 @@ function animateFast(){
        vidElem.play();  
     }, 900);
 
-   /* var animateFwrdInterval = setInterval(function(){ 
-        debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
-        $('#debug').html(debugTxt);
-        vidElem.pause();  
-        if(timer < 500){
-            vidElem.playbackRate = (vidElem.playbackRate < 10.0) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
-        }else{
-            vidElem.playbackRate = (vidElem.playbackRate > 1.0) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
-        }
-        vidElem.play();
-        timer = timer + 200;
-    }, 400);    
-    var animateFwrdTimout = setTimeout(function() { 
-        debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
-        $('#debug').html(debugTxt);  
-        clearInterval(animateFwrdInterval);
-       vidElem.pause();  
-        vidElem.playbackRate = 1.0;
-       vidElem.play();  
-    }, 1900);*/
+  
 }
 
 function playForward() {
