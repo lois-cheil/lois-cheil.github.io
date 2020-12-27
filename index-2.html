@@ -22,6 +22,11 @@
 <body>
 <div class="video-wrapper">
 	<div class="video-inner">
+        <video playsinline webkit-playsinline autoplay muted loop id="videoElemtest" class="video-elem active" poster="assets/nespresso.png">
+            <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
+            <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
+            Your browser does not support HTML video.
+          </video>
 	  <video playsinline webkit-playsinline autoplay muted loop id="videoElem" class="video-elem active" poster="assets/nespresso.png">
         <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
         <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
@@ -53,6 +58,9 @@ var totPlayTime = 15.787, currPlayTime = 0.0;
 var mode='FWRD';
 var xpos;
 var debugTxt = "";
+
+var vidElemtest = document.getElementById("videoElemtest");
+vidElemtest.playbackRate = 3;
 
 enableInlineVideo(video_elem);
 vidElem.play();
@@ -88,13 +96,13 @@ function animateFast(){
       //  debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
        // $('#debug').html(debugTxt);   
         if(timer < 500){
-            vidElem.pause();
+           // vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
-            vidElem.play();
+           // vidElem.play();
         }else{
-            vidElem.pause();
+          //  vidElem.pause();
             vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
-            vidElem.play();
+          //  vidElem.play();
         }
         timer = timer + 100;
     }, 100);    
