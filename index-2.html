@@ -82,11 +82,11 @@ $('video').bind('swiperight', function(e){
 
 function animateFast(){
     var timer = 10;
-    debugTxt += 'animateForwardFast' + "<br/>";
-    $('#debug').html(debugTxt);
+ //   debugTxt += 'animateForwardFast' + "<br/>";
+  //  $('#debug').html(debugTxt);
     var animateFwrdInterval = setInterval(function(){ 
-        debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
-        $('#debug').html(debugTxt);   
+      //  debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
+       // $('#debug').html(debugTxt);   
         if(timer < 500){
             vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
         }else{
@@ -95,8 +95,8 @@ function animateFast(){
         timer = timer + 100;
     }, 100);    
     var animateFwrdTimout = setTimeout(function() { 
-        debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
-        $('#debug').html(debugTxt);  
+     //   debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
+       // $('#debug').html(debugTxt);  
         clearInterval(animateFwrdInterval);
         vidElem.playbackRate = 1.0;
     }, 900);
