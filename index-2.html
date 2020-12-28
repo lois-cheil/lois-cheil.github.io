@@ -57,9 +57,9 @@ var debugTxt = "";
 enableInlineVideo(video_elem);
 vidElem.play();
 $('video').bind('swipeleft', function(e) {
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    debugTxt += 'swipeleft' + "<br/>";
+  //  e.stopImmediatePropagation();
+  //  e.preventDefault();
+    debugTxt += 'swipe-left' + "<br/>";
     $('#debug').html(debugTxt);
     if(mode !== 'FWRD'){
         mode = 'FWRD';
