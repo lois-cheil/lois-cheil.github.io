@@ -294,44 +294,33 @@
     <script>
     $jquery = $.noConflict();
     $jquery(document).ready(function () {	
-        // Event Video
-        
-        // PR section
+       
         $jquery('.pr-slider').slick({
             arrows: false,
             dots: false,
             slidesToShow: 1,
-            speed: 10,
-            infinite:false,
-            loop:false,
+            speed: 10,           
             useCSS: false,
-            slidesToScroll: 1,
-            responsive: [
-                {
-                  breakpoint: 1025,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  }
-                },
-                {
-                  breakpoint: 771,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  }
-                },
-                {
-                  breakpoint: 540,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  }
-                }
-            ]
+            slidesToScroll: 1,          
+           infinite: false,
+           loop: false,
+           useTransform: false,
+           touchThreshold: 0
+           
         });
-        // Video Gallery section
         
+        $jquery('.pr-slider').on('swipe', function(event, slick, direction){
+            var currentSlide = $jquery('.pr-slider').slick('slickCurrentSlide');
+            console.log('df', currentSlide)
+            if(direction === 'left'){
+                $jquery('.pr-slider').slick('slickGoTo', 1)
+            }
+            if(direction === 'right'){
+                 $jquery('.pr-slider').slick('slickGoTo', 0)
+            }
+            
+        });
+
         
     });
     </script>
