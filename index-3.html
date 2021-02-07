@@ -82,9 +82,16 @@
                     <div class="cta-wrapper">
 						<a class="submit-btn cta-yellow" href="#">Submit my answer</a>
                     </div><br/>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yA4iB91Cj34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/yA4iB91Cj34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a class="cta-download" onclick="sendGaData()" href="https://mena-data-enrich-prd.azurewebsites.net/mena/s21/images/SeongHyunLee_PresidentofSamsungGulfElectronics_01.zip" target="_blank">
+							Download photo
+						</a>
                         
 </body>
-
+<script>
+  function sendGaData(){
+    ga('send', 'event', 'download', 'download-photo', 'SGE-pres-photo');    
+  }
+  </script>
 
 </html>
