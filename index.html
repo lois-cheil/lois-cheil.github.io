@@ -146,21 +146,18 @@
       })
       
       var fs = controls.querySelector("#fs");
-      fs.addEventListener("click", function(e) { 
-            
-      if (document.fullscreenElement ||  fs.innerHTML === "Exit Fullscreen") {
-      
-      //elem.exitFullscreen();
-      //  document.exitFullscreen();
-      closeFullscreen();
-      fs.innerHTML = "Fullscreen";
-      } else { 
-      
-      // elem.requestFullscreen();
-      openFullscreen();
-      //  document.exitFullscreen();
-      fs.innerHTML = "Exit Fullscreen";
-      }
+      fs.addEventListener("click", function(e) {
+        var isFullScreen = !!(document.fullscreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
+        
+        // if (document.fullscreenElement ||  fs.innerHTML === "Exit Fullscreen") {
+         if (isFullScreen){
+     
+            closeFullscreen();
+            fs.innerHTML = "Fullscreen";
+            } else {          
+                openFullscreen();
+                fs.innerHTML = "Exit Fullscreen";
+            }
       })
    </script>
 </html>
