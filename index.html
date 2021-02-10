@@ -133,16 +133,16 @@
    </body>
    <script src="js/jquery-1.11.1.min.js"></script>
    <script>
-      var elem =document.getElementById("video-wrapper");
+      var videoElem =document.getElementById("video-wrapper");
       function openFullscreen() {
-          if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-          } else if (elem.mozRequestFullScreen) { /* Firefox */
-          elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-          elem.webkitRequestFullscreen();
-          } else if (elem.msRequestFullscreen) { /* IE/Edge */
-          elem.msRequestFullscreen();
+          if (videoElem.requestFullscreen) {
+            videoElem.requestFullscreen();
+          } else if (videoElem.mozRequestFullScreen) { /* Firefox */
+            videoElem.mozRequestFullScreen();
+          } else if (videoElem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            videoElem.webkitRequestFullscreen();
+          } else if (videoElem.msRequestFullscreen) { /* IE/Edge */
+            videoElem.msRequestFullscreen();
           }
       }
       function closeFullscreen() {
