@@ -21,8 +21,6 @@
       border-radius: 35px;
       visibility: visible;
       }
-   </style>
-   <style>
       .root { height: 100%;
       width: 100%;
       padding: 0px;
@@ -57,6 +55,7 @@
       }
       video { max-height: 100%;}
    </style>
+  
    <style>
       #customcontrols {
       font-size: 0; height: 100%;
@@ -79,8 +78,37 @@
       }
       #customcontrols a:hover { color: red; }
       #customcontrols a:visited { color: #770; }
-      .my-controls {bottom: 1%;
-      position: absolute;}
+      .my-controls {
+      bottom: 1%;
+      position: absolute;
+      }
+
+       
+      progress {
+      color: #fff;
+      font-size: 12px;
+      width: 220px;
+      height: 16px;
+      border: none;
+      margin-right: 10px;
+      background: #434343;
+      border-radius: 9px;
+      vertical-align: middle;
+    }
+    progress::-moz-progress-bar { 
+      color:fff;
+      background:#434343; 
+    }
+    
+    progress[value]::-webkit-progress-bar {
+      background-color: #434343;
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    }
+    
+    progress[value]::-webkit-progress-value {
+      background-color: #fff;
+    }
    </style>
    <body>
       <div class="root" >
@@ -92,6 +120,7 @@
                   </video>
                   <figcaption class="my-controls">
                      <a href="#" id="playpause">Play</a>
+                     <progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
                      <a href="#" id="fs">Fullscreen</a>
                   </figcaption>
                </figure>
@@ -151,13 +180,36 @@
         
         // if (document.fullscreenElement ||  fs.innerHTML === "Exit Fullscreen") {
          if (isFullScreen){
-     
-            closeFullscreen();
-            fs.innerHTML = "Fullscreen";
+             closeFullscreen();
+             fs.innerHTML = "Fullscreen";
             } else {          
                 openFullscreen();
                 fs.innerHTML = "Exit Fullscreen";
             }
-      })
+      });
+
+      //Progress bar
+      var progressBar  = document.getElementById('progress-bar');
+      // Add a listener for the timeupdate event so we can update the progress bar
+	  movie.addEventListener('timeupdate', updateProgressBar, false);
+      progressBar.addEventListener("click", seek);
+
+        function seek(e) {
+            var percent = e.offsetX / this.offsetWidth;
+            movie.currentTime = percent * movie.duration;
+            e.target.value = Math.floor(percent / 100);
+            e.target.innerHTML = progressBar.value + '% played';
+        }
+      // Update the progress bar
+      
+        function updateProgressBar() {
+        // Work out how much of the media has played via the duration and currentTime parameters
+        var percentage = Math.floor((100 / movie.duration) * movie.currentTime);
+        // Update the progress bar's value
+        progressBar.value = percentage;
+        // Update the progress bar's text (for browsers that don't support the progress element)
+        progressBar.innerHTML = percentage + '% played';
+    }
+  
    </script>
 </html>
