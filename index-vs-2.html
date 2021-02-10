@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <style>
+       
+        .cta-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            top: 2%;
+            visibility: visible;
+            height: 200px;
+                }
+        .cta-black{
+           
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: none;
+    padding: 10px 50px;
+    border: 2px solid #000;
+    color: #fff;
+    border-radius: 35px;
+    visibility: visible;
+        }
+        
+    </style>
+    <style>
+       .root { height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;}
+
+    .outer {
+        background: black;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    }
+    .inner-1 {
+        -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    }
+    video { max-height: 100%;}
+        </style>
+<body>
+
+
+<div class="root" >
+    <div class="outer">
+        <div class="inner-1" id="test">
+            <video  id="video1" controls>
+                <source src="https://images.samsung.com/is/content/samsung/p5/ae/create-withgalaxy/images/invite.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+                </video>
+                <div class="cta-wrapper">
+                    <a class="cta-black" href="#">CLICK HERE</a>
+                </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+
+<script>
+    /*function onFullScreen(e) {
+        var elem =document.getElementById("test");
+        elem.requestFullscreen();
+}
+
+document.getElementById("video").addEventListener('webkitfullscreenchange', onFullScreen)*/
+function onFullScreen(e) {
+        var elem =document.getElementById("test");
+        elem.requestFullscreen();
+}
+$('#video1').bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+    e.preventDefault();
+    var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+    var event = state ? 'FullscreenOn' : 'FullscreenOff';
+
+    onFullScreen()   
+});
+    </script>
+    
+
+
+</body>
+</html>

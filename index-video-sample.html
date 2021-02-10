@@ -24,6 +24,8 @@
             bottom: 0;
             left: 50%;
             top: 2%;
+            visibility: visible;
+            height: 200px;
                 }
         .cta-black{
            
@@ -35,22 +37,32 @@
     border: 2px solid #000;
     color: #000;
     border-radius: 35px;
+    visibility: visible;
         }
         
     </style>
 <body>
-<div class="main-container">
+<div class="main-container" >
 <h1>test</h1>
-<div class="video-wrapper">
-    <video  controls>
+<div class="video-wrapper" id="test">
+    <video  id="video1" controls>
     <source src="https://images.samsung.com/is/content/samsung/p5/ae/create-withgalaxy/images/invite.mp4" type="video/mp4">
-    <source src="movie.ogg" type="video/ogg">
+   
     Your browser does not support the video tag.
     </video>
     <div class="cta-wrapper">
-        <a class="cta-black" href="https://www.google.com">CLICK HERE</a>
+        <a class="cta-black" href="#">CLICK HERE</a>
     </div>
 </div>
 </div>
+
 </body>
+<script>
+    function onFullScreen(e) {
+        var elem =document.getElementById("test");
+        elem.requestFullscreen();
+}
+
+document.getElementById("video1").addEventListener('webkitfullscreenchange', onFullScreen)
+    </script>
 </html>

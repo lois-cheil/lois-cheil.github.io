@@ -1,131 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="https://ae.buynespresso.com/static/version1606212015/frontend/buynespresso/theme-uae/en_US/Magento_Theme/favicon.ico">
-    <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-	<style>
-        html, body { width: 100%; margin: 0; padding: 0; }
-        .video-wrapper * { box-sizing: border-box; }
-        .video-wrapper { width: 100%; margin: 0; padding: 0; }
-        .video-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0; }
-        .video-elem { width: 100%; margin: 0; padding: 0; display: block; }
-        #videoBackward { display: none; }
-
-        .debug-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0; }
-        #debug { font-size: 12px; line-height: 14px; width: 100%; height: 350px; overflow-y: scroll; }
-	</style>
-</head>
-<body>
-<div class="video-wrapper">
-	<div class="video-inner">
-	  <video playsinline webkit-playsinline autoplay muted loop id="videoElem" class="video-elem active" poster="assets/nespresso.png">
-        <source id="videoForward" src="assets/nesp-fwrd.mp4" type="video/mp4">
-        <!--<source id="videoBackward" src="assets/nesp-bwrd.mp4" type="video/mp4">-->
-		Your browser does not support HTML video.
-      </video>
-      <!--
-	  <video playsinline autoplay muted loop id="videoBackward" class="video-elem" poster="assets/nespresso.png">
-		<source src="assets/nesp-bwrd.mp4" type="video/mp4">
-		Your browser does not support HTML video.
-      </video>
-      -->
-    </div>
-    <div class="debug-inner">
-        <button id="btnClr">clear</button>
-        <div id="debug"></div>
-    </div>
-</div>
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/jquery.mobile-1.4.5.min.js"></script>
-<script type='application/javascript' src='js/fastclick.js'></script>
-<script src="js/inline-video.js"></script>
-<script text="type/javascript">
-$('document').ready(function(){
-
-var video_elem = document.querySelector('video');
-var vidElem = document.getElementById("videoElem"); 
-var startx = 0, endx = 0;
-var totPlayTime = 15.787, currPlayTime = 0.0;
-var mode='FWRD';
-var xpos;
-var debugTxt = "";
-
-enableInlineVideo(video_elem);
-vidElem.play();
-$('video').bind('swipeleft', function(e) {
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    debugTxt += 'swipeleft' + "<br/>";
-    $('#debug').html(debugTxt);
-    if(mode !== 'FWRD'){
-        mode = 'FWRD';
-        playForward();
-    }
-    animateFast();
-});
-
-$('video').bind('swiperight', function(e){
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    debugTxt += 'swiperight' + "<br/>";
-    $('#debug').html(debugTxt);
-    if(mode !== 'BWRD'){
-        mode = 'BWRD';
-        playBackward();
-    }
-    animateFast();
-});
-
-function animateFast(){
-    var timer = 0;
-    debugTxt += 'animateForwardFast' + "<br/>";
-    $('#debug').html(debugTxt);
-    var animateFwrdInterval = setInterval(function(){ 
-        debugTxt += 'timer: ' + timer + "\t" + 'pbr: ' + vidElem.playbackRate + "\t";
-        $('#debug').html(debugTxt);   
-        if(timer < 500){
-            vidElem.playbackRate = (vidElem.playbackRate < 10.00) ? vidElem.playbackRate + 2.0 : vidElem.playbackRate;
-        }else{
-            vidElem.playbackRate = (vidElem.playbackRate > 1.00) ? vidElem.playbackRate - 2.0 : vidElem.playbackRate;
-        }
-        timer = timer + 100;
-    }, 100);    
-    var animateFwrdTimout = setTimeout(function() { 
-        debugTxt += "<br/>" + 'FwrdTimout' + "<br/>";
-        $('#debug').html(debugTxt);  
-        clearInterval(animateFwrdInterval);
-        vidElem.playbackRate = 1.0;
-    }, 900);
-}
-
-function playForward() {
-    vidElem.currentTime = totPlayTime - vidElem.currentTime;
-    $('#videoElem source').attr('src', 'assets/nesp-fwrd.mp4');
-    $("#videoElem")[0].load();
-    $("#videoElem")[0].play();
-    debugTxt += "vidFwrd Time: " + vidElem.currentTime + "<br>";
-    $('#debug').html(debugTxt);
-}
-
-function playBackward() {
-    vidElem.currentTime = totPlayTime - vidElem.currentTime + 0.085;
-    $('#videoElem source').attr('src', 'assets/nesp-bwrd.mp4');
-    $("#videoElem")[0].load();
-    $("#videoElem")[0].play();
-    debugTxt += "vidBwrd Time: " + vidElem.currentTime + "<br>";
-    $('#debug').html(debugTxt);
-}
-
-$('#btnClr').click(function(){
-    debugTxt = "";
-    $('#debug').html(debugTxt);
-});
-
-});
-</script>
-</body>
+   <style>
+     body {margin:0}
+      .cta-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      top: 2%;
+      visibility: visible;
+      height: 200px;
+      }
+      .cta-black{
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      text-decoration: none;
+      padding: 10px 50px;
+      border: 2px solid #000;
+      color: #fff;
+      border-radius: 35px;
+      visibility: visible;
+      }
+   </style>
+   <style>
+      .root { height: 100%;
+      width: 100%;
+      padding: 0px;
+      margin: 0px;}
+      .outer {
+      background: black;
+      height: 100%;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      overflow: hidden;
+      
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      }
+      .inner-1 {
+      -webkit-box-align: center;
+      align-items: center;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      
+      }
+      video { max-height: 100%;}
+   </style>
+   <style>
+      #customcontrols {
+      font-size: 0; height: 100%;
+      }
+      }
+      #customcontrols figcaption { 
+      background: rgba(0,0,0,0.6); 
+      display: none; padding: .5em; 
+      color: #fff;
+      position: relative; top: -2.2rem;
+      text-align: right;
+      margin-bottom: -2.2rem;
+      }
+      #customcontrols figcaption a { 
+      text-decoration: none; font-size: 1rem; 
+      margin-right: .5rem;
+      color: #fff;
+      border-bottom: none;
+      margin-right: 20px;
+      }
+      #customcontrols a:hover { color: red; }
+      #customcontrols a:visited { color: #770; }
+      .my-controls {bottom: 1%;
+      position: absolute;}
+   </style>
+   <body>
+      <div class="root" >
+         <div class="outer">
+            <div class="inner-1" id="video-wrapper">
+               <figure id="customcontrols">
+                  <video controls poster="">
+                     <source src="https://images.samsung.com/is/content/samsung/p5/ae/create-withgalaxy/images/invite.mp4" type="video/mp4">
+                  </video>
+                  <figcaption class="my-controls">
+                     <a href="#" id="playpause">Play</a>
+                     <a href="#" id="fs">Fullscreen</a>
+                  </figcaption>
+               </figure>
+               <div class="cta-wrapper">
+                  <a class="cta-black" href="#">CLICK HERE</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script src="js/jquery-1.11.1.min.js"></script>
+   <script>
+      var elem =document.getElementById("video-wrapper");
+      function openFullscreen() {
+          if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+          }
+      }
+      function closeFullscreen() {
+      
+      if (document.exitFullscreen) {
+          document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+          document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+          document.msExitFullscreen();
+          console.log('IE')
+      }
+      }
+     
+      var moviecontainer = document.getElementById("customcontrols"),
+      movie = moviecontainer.querySelector("video"),
+      controls = moviecontainer.querySelector("figcaption"),
+      playpause = controls.querySelector("#playpause");
+      movie.removeAttribute("controls");
+      controls.style.display = "block";
+      playpause.addEventListener("click", function(e) { 
+      e.preventDefault()
+      if (movie.paused) {
+          movie.play();
+          playpause.innerHTML = "Pause";
+      } else { 
+          movie.pause();
+          playpause.innerHTML = "Play";
+      }
+      })
+      
+      var fs = controls.querySelector("#fs");
+      fs.addEventListener("click", function(e) { 
+            
+      if (document.fullscreenElement ||  fs.innerHTML === "Exit Fullscreen") {
+      
+      //elem.exitFullscreen();
+      //  document.exitFullscreen();
+      closeFullscreen();
+      fs.innerHTML = "Fullscreen";
+      } else { 
+      
+      // elem.requestFullscreen();
+      openFullscreen();
+      //  document.exitFullscreen();
+      fs.innerHTML = "Exit Fullscreen";
+      }
+      })
+   </script>
 </html>
