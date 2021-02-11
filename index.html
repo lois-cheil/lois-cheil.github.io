@@ -73,8 +73,8 @@
           
       }
       @media all and (max-width:768px) { 
-          video { max-height: 100%; max-width: 100%;}
-           }
+          video { max-height: 100%; max-width: 100%;} 
+          }
    </style>
   
    <style>
@@ -145,7 +145,6 @@
                      <a href="#" id="fs">Fullscreen</a>
                   </figcaption>
                </figure>
-               <button id="goFS">Go Fullscreen</button>
                <div class="cta-wrapper">
                   <a class="cta-black" href="#">Know more</a>
                </div>
@@ -155,14 +154,6 @@
       </div>
    </body>
    <script src="js/jquery-1.11.1.min.js"></script>
-   <script>
-    var goFS = document.getElementById("goFS");
-    goFS.addEventListener("click", function() {
-        var container = document.getElementById("video-wrapper");
-        container.requestFullscreen();
-    }, false);
-  </script>
-
    <script>
       var videoElem =document.getElementById("video-wrapper");
       function openFullscreen() {
